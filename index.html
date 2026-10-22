@@ -2013,9 +2013,9 @@ const FORMATS=[
 const LEGAL={legal:["Legal","ok"],not_legal:["Nicht legal","no"],restricted:["Restricted","warn"],banned:["Gebannt","ban"]};
 function legalHTML(c){
   const L=c.legal||{};
-  const rows=FORMATS.filter(([k])=>k in L);
+  const rows=FORMATS;
   if(!rows.length) return `<p class="hint">Keine Angaben zur Legalität vorhanden.</p>`;
-  return `<div class="legal">${rows.map(([k,n])=>{const [t,cls]=LEGAL[L[k]]||[L[k],"no"];
+  return `<div class="legal">${rows.map(([k,n])=>{const [t,cls]=LEGAL[L[k]||"not_legal"]||[L[k],"no"];
     return `<div class="lg ${cls}"><span>${esc(n)}</span><b>${esc(t)}</b></div>`}).join("")}</div>`;
 }
 let current = store.get("mtg-tab","omo");
@@ -2051,41 +2051,54 @@ function slim(c){
     color_identity:c.color_identity||[], oracle,
     normal:img.normal||"", art_crop:img.art_crop||"", back,
     uri:c.scryfall_uri, oracle_id:c.oracle_id, set:c.set, cn:c.collector_number,
-    legal:c.legalities||{}, gc:typeof c.game_changer==="boolean"?c.game_changer:undefined, t:Date.now()
+    legal:Object.fromEntries(Object.entries(c.legalities||{}).filter(([k,v])=>v!=="not_legal")), gc:typeof c.game_changer==="boolean"?c.game_changer:undefined, t:Date.now()
   };
 }
 function saveCache(){
-  const o={}; cardCache.forEach((v,k)=>{o[k]=v}); store.set("mtg-cards-v2",o);
+  const o={}; cardCache.forEach((v,k)=>{if(!o[k]||k===key(v.name))o[k]=v}); store.set("mtg-cards-v2",o);
 }
-async function fetchCards(names, onProgress){
+/* Scryfall verträgt nur wenige Anfragen pro Sekunde. Darum: langsam laden,
+   bei Fehlern warten und nochmals versuchen, nie den ganzen Ladevorgang abbrechen,
+   und nach jedem Paket speichern, damit beim nächsten Öffnen nichts verloren ist. */
+async function fetchCards(names, onProgress, onChunk){
   const WEEK=7*864e5;
   const need=[...new Set(names)].filter(n=>{const c=cardCache.get(key(n));return !c||Date.now()-c.t>WEEK});
-  let done=0;
+  let done=0, failed=0;
   for(let i=0;i<need.length;i+=75){
     const chunk=need.slice(i,i+75);
-    try{
-      const r=await fetch(API+"/cards/collection",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
-        body:JSON.stringify({identifiers:chunk.map(name=>({name}))})});
-      const j=await r.json();
-      for(const c of (j.data||[])){
-        const s=slim(c);
-        cardCache.set(key(c.name),s);
-        if(c.card_faces) cardCache.set(key(c.card_faces[0].name),s);
-      }
-      // Einzeln nachsuchen, was die Sammelsuche nicht gefunden hat
-      for(const nf of (j.not_found||[])){
-        await sleep(110);
-        try{
-          const r2=await fetch(API+"/cards/named?fuzzy="+encodeURIComponent(nf.name));
-          if(r2.ok){const c=await r2.json();const s=slim(c);cardCache.set(key(nf.name),s);cardCache.set(key(c.name),s);}
-          else cardCache.set(key(nf.name),{missing:true,name:nf.name,t:Date.now()-WEEK+36e5});
-        }catch(e){}
-      }
-    }catch(e){ throw e }
+    let ok=false;
+    for(let attempt=0;attempt<4&&!ok;attempt++){
+      try{
+        const r=await fetch(API+"/cards/collection",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+          body:JSON.stringify({identifiers:chunk.map(name=>({name}))})});
+        if(!r.ok){await sleep(1500*(attempt+1));continue;}
+        const j=await r.json();
+        for(const c of (j.data||[])){
+          const s=slim(c);
+          cardCache.set(key(c.name),s);
+          if(c.card_faces) cardCache.set(key(c.card_faces[0].name),s);
+        }
+        // Einzeln nachsuchen, was die Sammelsuche nicht gefunden hat
+        for(const nf of (j.not_found||[])){
+          for(let t=0;t<3;t++){
+            await sleep(250);
+            try{
+              const r2=await fetch(API+"/cards/named?fuzzy="+encodeURIComponent(nf.name));
+              if(r2.ok){const c=await r2.json();const s=slim(c);cardCache.set(key(nf.name),s);cardCache.set(key(c.name),s);break;}
+              if(r2.status===404){cardCache.set(key(nf.name),{missing:true,name:nf.name,t:Date.now()-WEEK+36e5});break;}
+              await sleep(1500*(t+1));
+            }catch(e){await sleep(1500*(t+1));}
+          }
+        }
+        ok=true;
+      }catch(e){await sleep(1500*(attempt+1));}
+    }
+    if(!ok) failed+=chunk.length;
     done+=chunk.length; onProgress&&onProgress(done,need.length);
-    await sleep(110);
+    saveCache(); onChunk&&onChunk();
+    await sleep(300);
   }
-  saveCache();
+  return failed;
 }
 const card = n => cardCache.get(key(n));
 
@@ -2383,7 +2396,7 @@ async function openCard(name){
       <h4 style="font:700 1.05rem var(--f-display);margin:18px 0 6px">Legalität in den Spielmodi</h4>
       ${legalHTML(c)}
       <p style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn primary" href="https://www.cardmarket.com/de/Magic/Products/Search?searchString=${encodeURIComponent(c.front)}" target="_blank" rel="noopener">Alle Versionen auf Cardmarket</a>
-        <a class="btn" href="${esc(c.uri)}" target="_blank" rel="noopener">Auf Scryfall öffnen</a>
+        <a class="btn" href="${esc(c.uri||`https://scryfall.com/card/${c.set}/${c.cn}`)}" target="_blank" rel="noopener">Auf Scryfall öffnen</a>
         ${artChoice[artKey(name)]?`<button class="btn" id="resetArt">Standard-Artwork</button>`:""}</p>
       <h4 style="font:700 1.05rem var(--f-display);margin:18px 0 0">Artwork wählen</h4>
       <div class="arts" id="arts"><p class="hint">Lade alle Artworks…</p></div>
@@ -2545,16 +2558,18 @@ function migrateArt(){
 }
 async function load(){
   migrateArt();
-  const names=[];
-  for(const d of allDecks()){names.push(d.commander);parseList(d.list).forEach(e=>names.push(e.name));(d.planned||[]).forEach(p=>names.push(p.in,p.out));}
+  const decks=allDecks(); const cur=decks.find(d=>d.id===current)||decks[0];
+  const namesOf=d=>[d.commander,...parseList(d.list).map(e=>e.name),...(d.planned||[]).flatMap(p=>[p.in,p.out])];
+  const names=[...namesOf(cur),...decks.filter(d=>d!==cur).flatMap(namesOf)];
   render();
   const st=()=>document.getElementById("status");
-  try{
-    await fetchCards(names,(a,b)=>{const s=st();if(s)s.textContent=`Lade Karten von Scryfall… ${a} / ${b}`;});
-    render();
-  }catch(e){
-    render(); const s=st(); if(s) s.textContent="Scryfall ist gerade nicht erreichbar. Bilder und Manakosten erscheinen, sobald du online bist.";
-  }
+  let last=0;
+  const failed=await fetchCards(names,
+    (a,b)=>{const s=st();if(s)s.textContent=`Lade Karten von Scryfall… ${a} / ${b}`;},
+    ()=>{ if(modal.hidden&&!ddOpen&&Date.now()-last>1500){last=Date.now();render();} });
+  if(modal.hidden&&!ddOpen) render();
+  const s=st();
+  if(s) s.textContent=failed?`${failed} Karten konnten gerade nicht von Scryfall geladen werden. Lade die Seite in einer Minute neu.`:"";
 }
 load();
 </script>
