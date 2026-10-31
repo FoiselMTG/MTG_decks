@@ -243,7 +243,7 @@ select{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-
 <div class="wrap">
   <header class="top">
     <h1>Floris' Commander-Decks</h1>
-    <p>Kartendaten und Artworks live von Scryfall · Brackets nach dem offiziellen Commander-System</p>
+    <p>Kartendaten und Artworks live von Scryfall · Brackets und Siegzug von commanderbracket.app</p>
   </header>
   <nav class="picker" id="tabs" aria-label="Deck wählen"></nav>
   <main id="deck"></main>
@@ -269,7 +269,7 @@ select{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-
 const DECKS = [
 {
   id:"omo",
-  power:{bracket:3, pl:6, why:"Keine Game Changers, aber Dark Depths mit Thespian's Stage oder Vesuva ist eine Zwei-Karten-Kombo, die Expedition Map und Sylvan Scrying früh finden. Tron und viel Landfall-Wert heben das Deck klar über einen normalen Precon."},
+  power:{bracket:2, turn:9.0, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 2, Siegzug etwa Runde 9, nahe an der Grenze zu Bracket 1. Keine Game Changers, nur Sol Ring als schnelles Mana und zwei Tutoren (Expedition Map, Sylvan Scrying). Die Kombo Dark Depths + Thespian's Stage erkennt die Seite nicht, am Tisch also trotzdem ansagen."},
   name:"Tricky Terrain",
   commander:"Omo, Queen of Vesuva",
   accent:"#4fb3a4",
@@ -372,7 +372,7 @@ const DECKS = [
 },
 {
   id:"ulalek",
-  power:{bracket:2, pl:5, why:"Keine Game Changers und keine Kombos. Starke Eldrazi-Bomben, aber das Mana mit vielen Painlands ist langsam. Ein solider Precon mit Upgrades."},
+  power:{bracket:2, turn:8.5, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 2, Siegzug etwa Runde 8–9. Keine Game Changers, keine Kombos, kein Mass Land Denial. Die grossen Eldrazi kommen spät."},
   name:"Eldrazi Incursion",
   commander:"Ulalek, Fused Atrocity",
   accent:"#a58fd6",
@@ -485,7 +485,7 @@ const DECKS = [
 },
 {
   id:"terra",
-  power:{bracket:3, pl:6, why:"Keine Game Changers, aber sehr sauberes Mana mit Fetchländern, Shocks und Triomes sowie starke Einzelkarten wie Fable of the Mirror-Breaker, Atraxa und Elesh Norn. Spielt sich wie ein gutes Bracket 3 ohne Game Changers."},
+  power:{bracket:4, turn:7.9, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 4, obwohl keine Game Changers drin sind. Grund: Die Seite erkennt Terra (Rückseite Esper Terra) zusammen mit Estrid's Invocation als Zwei-Karten-Kombo, und eine frühe Kombo hebt das Deck auf Bracket 4. Vom Tempo her (Siegzug etwa Runde 8) wäre es Bracket 3."},
   name:"Saga-Deck",
   commander:"Terra, Magical Adept",
   accent:"#e0a95a",
@@ -589,7 +589,7 @@ const DECKS = [
 },
 {
   id:"anowon",
-  power:{bracket:3, pl:5, why:"Notion Thief ist ein Game Changer, deshalb mindestens Bracket 3. Vom Spielgefühl her eher Bracket 2: viele kleine Rogues, und Mill als Siegbedingung braucht Zeit. Ohne Notion Thief wäre es Bracket 2."},
+  power:{bracket:3, turn:7.5, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7–8. Notion Thief ist der einzige Game Changer. Ohne ihn wäre es knapp Bracket 2–3."},
   name:"Rogues",
   commander:"Anowon, the Ruin Thief",
   accent:"#6f8fc9",
@@ -683,7 +683,7 @@ const DECKS = [
 },
 {
   id:"rukarumel",
-  power:{bracket:3, pl:7, why:"Crop Rotation ist ein Game Changer und holt The World Tree direkt. Rukarumel, The World Tree und Purphoros oder Impact Tremors gewinnen auf einen Schlag, viele Tutoren machen die Kombo verlässlich."},
+  power:{bracket:3, turn:7.3, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7. Crop Rotation ist der einzige Game Changer, dazu sieben Tutoren. Die Weltenbaum-Kombo mit Purphoros erkennt die Seite nicht als feste Kombo."},
   name:"Weltenbaum-Gods",
   commander:"Rukarumel, Biologist",
   accent:"#7cc27a",
@@ -781,7 +781,7 @@ const DECKS = [
 },
 {
   id:"divorce",
-  power:{bracket:3, pl:4, why:"Farewell und Smothering Tithe sind Game Changers, deshalb Bracket 3. Als Themendeck mit Karten nach ihrem Namen ist es aber eines der schwächsten Decks. Ohne diese zwei Karten wäre es klar Bracket 2."},
+  power:{bracket:4, turn:7.7, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 4. Grund ist Bend or Break: Die Seite zählt sie als Mass Land Denial, und das ist erst ab Bracket 4 erlaubt. Dazu zwei Game Changers (Farewell, Smothering Tithe). Ohne Bend or Break wäre es Bracket 3."},
   name:"Divorce Tribal",
   commander:"Child of Alara",
   accent:"#d0718c",
@@ -889,7 +889,7 @@ const DECKS = [
 },
 {
   id:"kibo",
-  power:{bracket:2, pl:5, why:"Keine Game Changers und keine Kombos. Aggressives Tribal, das von gegnerischen Artefakten lebt. Gegen Artefakt-Decks stark, sonst durchschnittlich."},
+  power:{bracket:2, turn:8.5, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 2, Siegzug etwa Runde 8–9. Keine Game Changers, keine Kombos."},
   name:"Going Apeshit",
   commander:"Kibo, Uktabi Prince",
   accent:"#c98a3e",
@@ -970,7 +970,7 @@ const DECKS = [
 },
 {
   id:"shadowfax",
-  power:{bracket:2, pl:4, why:"Keine Game Changers. Pferde sind ein kleiner Kreaturentyp, viele Karten sind eher thematisch als stark. Macht Spass, gewinnt aber langsam."},
+  power:{bracket:2, turn:9.0, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 2, Siegzug etwa Runde 9. Keine Game Changers, keine Kombos, kaum Tutoren."},
   name:"Horsing around",
   commander:"Shadowfax, Lord of Horses",
   accent:"#c7cfe0",
@@ -1054,7 +1054,7 @@ const DECKS = [
 },
 {
   id:"mabel",
-  power:{bracket:3, pl:6, why:"Jeska's Will und Smothering Tithe sind Game Changers. Mäuse mit Valiant und Equipment sind schnell und konstant, und Mabel kostet nur drei Mana."},
+  power:{bracket:3, turn:6.7, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7. Zwei Game Changers (Jeska's Will, Smothering Tithe), dazu schnell und konstant durch die günstige Commanderin."},
   name:"Mouse Tribal",
   commander:"Mabel, Heir to Cragflame",
   accent:"#e0714f",
@@ -1143,7 +1143,7 @@ const DECKS = [
 },
 {
   id:"vohar",
-  power:{bracket:5, pl:9, why:"Über 20 Game Changers, schnelles Mana, Gratis-Konter und Siegkombos mit Thassa's Oracle. Auf cEDH-Tische ausgelegt und gegen normale Decks nicht fair."},
+  power:{bracket:5, turn:2.5, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 5 (cEDH), Siegzug etwa Runde 2–3. Erkannte Siegkombos: Thassa's Oracle mit Demonic Consultation oder Tainted Pact, Hullbreaker Horror mit Sol Ring. Dazu viel schnelles Mana, neun Tutoren und viele Gratis-Konter."},
   name:"Dimir-Kombo (cEDH)",
   commander:"Vohar, Vodalian Desecrator",
   accent:"#5b7fc4",
@@ -1244,7 +1244,7 @@ const DECKS = [
 },
 {
   id:"darien",
-  power:{bracket:3, pl:7, why:"Smothering Tithe ist der einzige Game Changer. Mit Doubling Season, Anointed Procession und Parallel Lives wächst das Brett explosiv, Overwhelming Stampede beendet Spiele schnell."},
+  power:{bracket:3, turn:8.4, src:"commanderbracket.app", why:"commanderbracket.app: Vom Tempo her Bracket 2 (Siegzug etwa Runde 8), wegen Smothering Tithe als Game Changer aber Bracket 3. Ohne Smothering Tithe wäre es Bracket 2."},
   name:"Selesnya Tokens",
   commander:"King Darien XLVIII",
   accent:"#a9c46a",
@@ -1340,7 +1340,7 @@ const DECKS = [
 },
 {
   id:"kwain",
-  power:{bracket:2, pl:4, why:"Keine Game Changers. Grouphug mit freiwilligem Ziehen ist absichtlich gutmütig, die Mill-Siegbedingung braucht viele Runden."},
+  power:{bracket:3, turn:7.8, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 8. Keine Game Changers, aber die Seite erkennt mehrere Mill-Kombos: Bruvac mit Traumatize oder Maddening Cacophony sowie Maddening Cacophony mit Fraying Sanity."},
   name:"Grouphug",
   commander:"Kwain, Itinerant Meddler",
   accent:"#8fb8de",
@@ -1432,7 +1432,7 @@ const DECKS = [
 },
 {
   id:"phelddagrif",
-  power:{bracket:3, pl:5, why:"Rhystic Study, Smothering Tithe und Cyclonic Rift sind drei Game Changers, also genau die Obergrenze von Bracket 3. Als Grouphug schenkt das Deck den Gegnern viel und gewinnt eher spät."},
+  power:{bracket:3, turn:6.7, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7. Genau drei Game Changers (Rhystic Study, Smothering Tithe, Cyclonic Rift), also die Obergrenze für Bracket 3."},
   name:"Hippo-Diplomatie",
   commander:"Phelddagrif",
   accent:"#6fb3a0",
@@ -1528,7 +1528,7 @@ const DECKS = [
 },
 {
   id:"zedruu",
-  power:{bracket:3, pl:6, why:"Drei Game Changers: Rhystic Study, Smothering Tithe und Cyclonic Rift. Illusions of Grandeur mit Donate ist eine Zwei-Karten-Kombo, die einen Gegner auf einen Schlag besiegen kann."},
+  power:{bracket:3, turn:6.6, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7. Drei Game Changers (Smothering Tithe, Rhystic Study, Cyclonic Rift). Die Donate-Kombo mit Illusions of Grandeur erkennt die Seite nicht."},
   name:"Geschenkt ist geschenkt",
   commander:"Zedruu the Greathearted",
   accent:"#d9a25b",
@@ -1625,7 +1625,7 @@ const DECKS = [
 },
 {
   id:"bumbleflower",
-  power:{bracket:3, pl:6, why:"Drei Game Changers: Rhystic Study, Smothering Tithe und Cyclonic Rift. Die vielen billigen Sprüche ziehen dir schnell Karten, und Simic Ascendancy kann überraschend gewinnen."},
+  power:{bracket:3, turn:6.4, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 6–7. Drei Game Changers (Rhystic Study, Smothering Tithe, Cyclonic Rift), viele billige Sprüche machen das Deck recht schnell."},
   name:"Teeparty",
   commander:"Ms. Bumbleflower",
   accent:"#e4c75f",
@@ -1720,7 +1720,7 @@ const DECKS = [
 },
 {
   id:"ianmalcolm",
-  power:{bracket:3, pl:6, why:"Rhystic Study und Cyclonic Rift sind Game Changers. Wheels zusammen mit Niv-Mizzet oder Scrawling Crawler machen auf einen Schlag viel Schaden."},
+  power:{bracket:3, turn:6.8, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7. Zwei Game Changers (Rhystic Study, Cyclonic Rift). Wheels mit Niv-Mizzet oder Scrawling Crawler machen viel Schaden auf einmal."},
   name:"Chaostheorie",
   commander:"Ian Malcolm, Chaotician",
   accent:"#d0623f",
@@ -1811,7 +1811,7 @@ const DECKS = [
 },
 {
   id:"gluntch",
-  power:{bracket:3, pl:5, why:"Smothering Tithe ist ein Game Changer. Gluntch beschenkt die Gegner stark, gewonnen wird eher spät mit Felidar Sovereign, Test of Endurance oder Approach of the Second Sun."},
+  power:{bracket:3, turn:7.6, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 3, Siegzug etwa Runde 7–8. Smothering Tithe ist der einzige Game Changer."},
   name:"Quallen-Geschenke",
   commander:"Gluntch, the Bestower",
   accent:"#9fcfb6",
@@ -1902,7 +1902,7 @@ const DECKS = [
 },
 {
   id:"braids",
-  power:{bracket:4, pl:7, why:"Braids, Cabal Minion ist selbst ein Game Changer. Winter Orb, Static Orb und Contamination gelten als Mass Land Denial, das ist erst ab Bracket 4 erlaubt. Gegen normale Decks sehr zermürbend, gewinnt aber eher langsam über Opfer-Schaden."},
+  power:{bracket:4, turn:6.7, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 4. Winter Orb, Static Orb und Contamination gelten als Mass Land Denial, das ist erst ab Bracket 4 erlaubt. Braids selbst ist ein Game Changer. Vom Tempo her (Siegzug etwa Runde 7) wäre es Bracket 3."},
   name:"Braids-Stax",
   commander:"Braids, Cabal Minion",
   accent:"#a77bc0",
@@ -1986,7 +1986,7 @@ const DECKS = [
 },
 {
   id:"isamaru",
-  power:{bracket:3, pl:6, why:"Keine Game Changers und keine Kombos. Mit Stoneforge Mystic, Puresteel Paladin, Sigarda's Aid und vielen Schwertern ist es aber ein sehr gut ausgebautes Voltron-Deck. Isamaru selbst ist schwach und leicht zu entfernen, darum tragen auch die anderen Kreaturen die Ausrüstung."},
+  power:{bracket:2, turn:8.5, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 2, Siegzug etwa Runde 8–9. Keine Game Changers, keine Kombos, kein schnelles Mana. Starke Ausrüstung, aber nichts, was das Bracket hebt."},
   name:"Hund mit Schwertern",
   commander:"Isamaru, Hound of Konda",
   accent:"#e6d39a",
@@ -2075,7 +2075,7 @@ const DECKS = [
 },
 {
   id:"riku",
-  power:{bracket:2, pl:5, why:"Keine Game Changers und keine Kombos. Ein klassischer Precon mit viel Rampe und Werte-Kreaturen. Riku verdoppelt Sprüche und Kreaturen, braucht dafür aber viel Mana und ist recht langsam."},
+  power:{bracket:4, turn:7.7, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 4, nur wegen Ruination: Die Seite zählt sie als Mass Land Denial. Ohne Ruination wäre das Deck Bracket 3 (Siegzug etwa Runde 8, keine Game Changers)."},
   name:"Doppelte Reflexionen",
   commander:"Riku of Two Reflections",
   accent:"#4fa3b8",
@@ -2161,7 +2161,7 @@ const DECKS = [
 },
 {
   id:"jhoira",
-  power:{bracket:4, pl:7, why:"Vier Game Changers (Consecrated Sphinx, Rhystic Study, Cyclonic Rift, Ancient Tomb), dazu mehrere Extrazüge und Omniscience oder Dream Halls, die riesige Eldrazi gratis ins Spiel bringen. Das ist klar Bracket 4. Die Siegbedingungen sind aber langsam und hängen davon ab, wann die ausgesetzten Karten fertig sind."},
+  power:{bracket:4, turn:6.0, src:"commanderbracket.app", why:"commanderbracket.app: Bracket 4. Vier Game Changers (Consecrated Sphinx, Ancient Tomb, Cyclonic Rift, Rhystic Study) und fünf Extrazug-Karten. Siegzug etwa Runde 6."},
   name:"Eye of the Storm",
   commander:"Jhoira of the Ghitu",
   accent:"#e07a4a",
@@ -2247,6 +2247,115 @@ const DECKS = [
 1 Wall of Frost
 1 Web of Inertia`,
   planned:[]
+},
+{
+  id:"skrull",
+  name:"Skrull-Kontrolle",
+  commander:"Super-Skrull",
+  accent:"#6aa86b",
+  note:"Fünffarbiges Kontroll-Deck, auf Arena gebaut. Super-Skrull ist selbst schwarz, seine Fähigkeiten brauchen aber alle fünf Farben: {2}{W} macht eine 0/4-Mauer, {3}{G} gibt +4/+4, {4}{R} macht 4 Schaden an einer Kreatur, {5}{U} lässt einen Spieler vier Karten ziehen. Zusammen mit Underworld Dreams, Sheoldred, Fate Unraveler und Fell Stinger wird das Ziehen der Gegner zur Strafe. Für die Papierversion: Begin Anew und Potential Horizon gibt es nur auf Arena (Alchemy), Orcish Bowmasters ist zu teuer. Die Ersatzkarten stehen unten bei den geplanten Tauschen.",
+  list:`1 Flooded Strand
+1 Gleaming Splendor
+1 Fabled Passage
+1 Argent Dais
+1 Underworld Dreams
+1 Orcish Bowmasters
+1 Sheoldred, the Apocalypse
+1 Rankle, Master of Pranks
+1 Ob Nixilis, the Hate-Twisted
+1 Dragon Mage
+1 Authority of the Consuls
+1 Howling Golem
+1 Phyrexian Arena
+1 The Trickster-God's Heist
+1 Raugrin Triome
+1 Peer into the Abyss
+1 Compulsive Research
+1 Induced Amnesia
+1 Commit // Memory
+1 Sublime Epiphany
+1 Overflowing Insight
+1 Blue Sun's Zenith
+1 Sign in Blood
+1 Blood Pact
+1 Foreboding Fruit
+1 Fell Stinger
+1 Reverent Howl
+1 Azusa's Many Journeys
+1 Zagoth Triome
+1 Explore
+1 Enter the Unknown
+1 Growth Spiral
+1 Deathsprout
+1 Eureka Moment
+1 Begin Anew
+1 Doomskar
+1 Cleansing Nova
+1 Realm-Cloaked Giant
+1 Vanquish the Horde
+1 Ritual of Soot
+1 Hallowed Fountain
+1 Deserted Beach
+1 Glacial Fortress
+1 Shattered Sanctum
+1 Shipwreck Marsh
+1 Shineshadow Snarl
+1 Godless Shrine
+1 Isolated Chapel
+1 Drowned Catacomb
+1 Watery Grave
+1 Underground River
+1 Stormcarved Coast
+1 Steam Vents
+1 Haunted Ridge
+1 Smoldering Marsh
+1 Deathcap Glade
+1 Overgrown Tomb
+1 Rockfall Vale
+1 Stomping Ground
+1 Rootbound Crag
+3 Swamp
+1 Sundown Pass
+1 Sacred Foundry
+1 Overgrown Farmland
+1 Fortified Village
+1 Breeding Pool
+1 Dreamroot Cascade
+1 Sunpetal Grove
+1 Temple Garden
+1 Hinterland Harbor
+1 Xander's Lounge
+1 Ziatora's Proving Ground
+1 Indatha Triome
+1 Ketria Triome
+1 Spara's Headquarters
+1 Arid Mesa
+1 Bloodstained Mire
+1 Field of Ruin
+1 Marsh Flats
+1 Prismatic Vista
+1 Verdant Catacombs
+1 Polluted Delta
+1 Island
+1 Windswept Heath
+1 Primal Amulet
+1 Counterspell
+1 Disdainful Stroke
+1 Dream Fracture
+1 Archmage's Charm
+1 Dovin's Veto
+1 Drown in the Loch
+1 Swords to Plowshares
+1 Path to Exile
+1 Requisition Raid
+1 Assassin's Trophy
+1 Ob Nixilis, the Adversary
+1 Potential Horizon`,
+  planned:[
+    {out:"Begin Anew", in:"Day of Judgment"},
+    {out:"Potential Horizon", in:"Evolving Wilds"},
+    {out:"Orcish Bowmasters", in:"Fate Unraveler"}
+  ]
 }
 ];
 
@@ -2429,15 +2538,16 @@ function gcOf(deck){
 function powerOf(deck){
   const gc=gcOf(deck); const p=deck.power||{};
   const auto=gc.length===0?2:gc.length<=3?3:4;
-  return {bracket:p.bracket||auto, pl:p.pl||null, gc, auto:!p.bracket,
+  return {bracket:p.bracket||auto, turn:p.turn??null, src:p.src||null, gc, auto:!p.bracket,
     why:p.why||"Automatisch geschätzt, nur aus der Zahl der Game Changers. Kombos und Tempo sind darin nicht berücksichtigt."};
 }
+function speedPct(turn){ if(turn==null) return 0; return Math.max(5,Math.min(100,(12-turn)/10*100)); }
 function powerHTML(deck){
   const p=powerOf(deck); const [bn]=BRACKETS[p.bracket];
   const over=p.gc.length>GC_LIMIT[p.bracket];
   return `<div class="power" aria-label="Stärke des Decks">
     <div class="pw-box" title="${esc(BRACKETS[p.bracket][1])}"><span class="pw-lbl">Bracket</span><b class="pw-num">${p.bracket}</b><small>${esc(bn)}${p.auto?" · geschätzt":""}</small></div>
-    <div class="pw-box"><span class="pw-lbl">Powerlevel</span><b class="pw-num">${p.pl??"–"}<i>/10</i></b><div class="meter" aria-hidden="true"><span style="width:${(p.pl||0)*10}%"></span></div></div>
+    <div class="pw-box" title="Geschätzte Runde, in der das Deck typischerweise gewinnt (commanderbracket.app)"><span class="pw-lbl">Siegzug</span><b class="pw-num">${p.turn!=null?String(p.turn).replace(".",","):"–"}</b><small>Runde (ca.)</small><div class="meter" aria-hidden="true"><span style="width:${speedPct(p.turn)}%"></span></div></div>
     <div class="pw-why"><p>${esc(p.why)}</p>
       <div class="gcs ${over?"over":""}"><span class="lbl">${p.gc.length?`${p.gc.length} Game Changer${p.gc.length>1?"s":""}`:"Keine Game Changers"}${over?" · zu viele für dieses Bracket":""}</span>
       ${p.gc.map(n=>`<button class="gc-tag" data-card="${esc(n)}">${esc((card(n)&&!card(n).missing)?card(n).name:n)}</button>`).join("")}</div>
@@ -2445,20 +2555,20 @@ function powerHTML(deck){
 }
 function openCompare(){
   const rows=allDecks().map(d=>({d,p:powerOf(d),c:card(d.commander)}))
-    .sort((a,b)=>b.p.bracket-a.p.bracket||(b.p.pl||0)-(a.p.pl||0)||a.d.name.localeCompare(b.d.name));
+    .sort((a,b)=>b.p.bracket-a.p.bracket||(a.p.turn??99)-(b.p.turn??99)||a.d.name.localeCompare(b.d.name));
   openModal(`<div class="cmp">
-    <div class="cmp-head"><h3>Powerlevel-Vergleich</h3><span class="hint">${rows.length} Decks · stärkste zuerst · Klick öffnet das Deck</span></div>
+    <div class="cmp-head"><h3>Stärke-Vergleich</h3><span class="hint">${rows.length} Decks · stärkste zuerst · Klick öffnet das Deck</span></div>
     <div class="brk">${[1,2,3,4,5].map(i=>`<div><span class="bp b${i}">B${i}</span> <b>${BRACKETS[i][0]}</b>${esc(BRACKETS[i][1])}</div>`).join("")}</div>
     <div class="tbl"><table>
-      <thead><tr><th>Deck</th><th class="hide-s">Farben</th><th>Bracket</th><th>Powerlevel</th><th class="hide-s">Game Changers</th></tr></thead>
+      <thead><tr><th>Deck</th><th class="hide-s">Farben</th><th>Bracket</th><th>Siegzug</th><th class="hide-s">Game Changers</th></tr></thead>
       <tbody>${rows.map(({d,p,c})=>`<tr tabindex="0" data-id="${esc(d.id)}">
         <td><div class="dn"><span class="dot" style="background:${esc(d.accent||"#d6b46a")}"></span><span style="min-width:0"><b>${esc(d.name)}</b><small>${esc(deckLabel(d))}</small></span></div></td>
         <td class="hide-s">${c&&!c.missing?pipsHTML(c.color_identity):""}</td>
         <td><span class="bp b${p.bracket}" title="${esc(BRACKETS[p.bracket][0])}">B${p.bracket}</span></td>
-        <td><div class="plbar"><span class="tr"><i style="width:${(p.pl||0)*10}%;background:${esc(d.accent||"#d6b46a")}"></i></span><b>${p.pl??"–"}</b></div></td>
+        <td><div class="plbar"><span class="tr"><i style="width:${speedPct(p.turn)}%;background:${esc(d.accent||"#d6b46a")}"></i></span><b style="width:3ch">${p.turn!=null?String(p.turn).replace(".",","):"–"}</b></div></td>
         <td class="hide-s num">${p.gc.length}</td></tr>`).join("")}</tbody>
     </table></div>
-    <p class="cmp-note">Das Bracket folgt dem offiziellen Commander-Bracket-System (Beta, Game-Changers-Liste vom Februar 2026). Das Powerlevel von 1 bis 10 ist eine Einschätzung und ersetzt das Gespräch vor dem Spiel nicht: Wie gut ein Deck läuft, hängt auch vom Tisch ab.</p>
+    <p class="cmp-note">Das Bracket folgt dem offiziellen Commander-Bracket-System (Beta, Game-Changers-Liste vom Februar 2026). Bracket und Siegzug stammen von commanderbracket.app (Stand 29. Oktober 2026). Der Siegzug ist die geschätzte Runde, in der das Deck typischerweise gewinnt: je kleiner, desto schneller. Das ersetzt das Gespräch vor dem Spiel nicht: Wie gut ein Deck läuft, hängt auch vom Tisch ab.</p>
   </div>`);
   sheet.querySelectorAll("tr[data-id]").forEach(tr=>{
     const go=()=>{closeModal();switchDeck(tr.dataset.id);};
@@ -2489,7 +2599,7 @@ function renderTabs(){
       </div>`:""}
     </div>
     <button class="step" id="nextDeck" aria-label="Nächstes Deck" title="Nächstes Deck">›</button>
-    <button class="btn cmp" id="cmpBtn">Powerlevel-Vergleich</button>
+    <button class="btn cmp" id="cmpBtn">Stärke-Vergleich</button>
     <button class="btn add" id="addDeck">+ Deck hinzufügen</button>`;
   document.getElementById("ddBtn").onclick=e=>{e.stopPropagation();ddOpen=!ddOpen;ddFilter="";renderTabs();};
   document.getElementById("prevDeck").onclick=()=>switchDeck(decks[(idx-1+decks.length)%decks.length].id);
@@ -2507,7 +2617,7 @@ function renderTabs(){
         return `<button class="dd-opt ${i===ddActive?"active":""}" role="option" aria-selected="${d.id===current}" data-id="${esc(d.id)}">
           <span class="dot" style="background:${esc(d.accent||"#d6b46a")}"></span>
           <span class="t"><b>${esc(d.name)}</b><small>${esc(deckLabel(d))}</small></span>
-          ${cc?pipsHTML(cc.color_identity):""}<span class="dd-br">B${powerOf(d).bracket}${d.power&&d.power.pl?" · "+d.power.pl:""}</span></button>`}).join(""):`<p class="dd-empty">Kein Deck gefunden.</p>`;
+          ${cc?pipsHTML(cc.color_identity):""}<span class="dd-br">B${powerOf(d).bracket}${d.power&&d.power.turn!=null?" · R"+String(d.power.turn).replace(".",","):""}</span></button>`}).join(""):`<p class="dd-empty">Kein Deck gefunden.</p>`;
       list.querySelectorAll(".dd-opt").forEach(b=>b.onclick=()=>switchDeck(b.dataset.id));
       const a=list.querySelector(".dd-opt.active"); if(a) a.scrollIntoView({block:"nearest"});
       return hits;
